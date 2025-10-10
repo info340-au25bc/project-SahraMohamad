@@ -1,3 +1,16 @@
-ol li {
-    margin-bottom: 20px;
-}
+body {
+    font-family: Arial, Arial, Helvetica, sans-serif;
+    background: linear-gradient(to bottom, #fdf6ff, #e9f5ff);
+    color: #222;
+    margin: 40px;
+    line-height: 1.6;
+  }
+  
+  header {
+    text-align: center;
+    background-color: plum;
+    color: black;
+    padding: 20px;
+    border-radius: 10px;
+  }
+  
