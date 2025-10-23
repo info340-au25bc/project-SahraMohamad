@@ -1,0 +1,92 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    height: inherit;
+    background-color: #FFF3DF;
+}
+
+nav {
+    list-style-type: none;
+    display: flex;
+    padding: 5px;
+    background-color: white;
+    border: 1px solid black;
+    width: 100%;
+}
+
+nav li a {
+    display: block;
+    color: black;
+    padding: 15px;
+    text-decoration: none;
+}
+
+main {
+    display: flex;
+    flex: 1;
+}
+
+main div {
+    display: flex;
+    flex: 1;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    margin: 50px;
+    min-height: 100%;
+}
+
+.box {
+    display: flex;
+    margin: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border: 1px solid black;
+    border-radius: 10px;
+    flex-direction: column;
+    background-color: #FFFDF9;
+}
+
+#fridge {
+    background-color: white;
+    height: 100%;
+    min-width: 50%;
+    padding: 15px;
+}
+
+#item {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border: 1px solid black;
+    border-radius: 10px;
+    background-color: lightgrey;
+}
+
+#meal {
+    display: inline-block;
+    width: 300px;
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 10px;
+    background-color: lightgrey;
+}
+
+#search {
+    display: block;
+    width: 500px;
+    margin: 20px auto;
+    padding: 15px;
+    padding-left: 30px;
+    border-radius: 50px;
+    background-color: white;
+}
