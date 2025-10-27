@@ -2,82 +2,107 @@
 <html>
 <head>
     <meta charset="UTF-8">
+    <meta name="description" content="A way to plan your meals">
+    <meta name="author" content="Sahra Mohamad, Elina Jeon, Eunseo Chung">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Your Fridge</title>
 
-    <link rel="stylesheet" href="css/ejstyle.css">
+    <link rel="icon" type="img/favicon.png">
+    <link rel="stylesheet" href="css/ejstylelocal.css">
 </head>
 
 <body>
     <nav>
-        <li><a href="#home">Home</a></li>
-        <li><a href="#fridge">Fridge</a></li>
-        <li><a href="#explore">Explore</a></li>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="fridge.html">Fridge</a></li>
+        <li><a href="meals.html">Meals</a></li>
+        <li><a href="explore.html">Explore</a></li>
     </nav>
 
     <main>
-        <div class="Container">
-            <section class="column">
-                <h1>Notifications</h1>
-                    <!-- Contains notifs -->
+        <div>
+            <section class="notif-column">
+                <h1>Alerts</h1>
+                    <!-- Notifs -->
                     <div class="box">
-                        <h2>Notif 1</h2>
-                        <p>Description</p>
+                        <p>! Apples are about to expire (In 2 days) </p>
                     </div>
 
                     <div class="box">
-                        <h2>Notif 2</h2>
-                        <p>Description</p>
+                        <p>! Missing information for several items </p>
                     </div>
             </section>
 
-            <section class="fridge">
+            <section class="fridge-column">
                 <h1>Fridge</h1>
-                <div>
-                <!-- Fridge Container -->
+                <div class="fridge">
                     <div class="fridge-item">
-                    <!-- Item Container-->
-                        <p>
-                            Item 1
-                        </p>
+                        <figure>
+                            <a href="fridge-items/fridge-apples.html">
+                            <img class="fridge-item" src="img/apple.png" alt="Apples">
+                            </a>
+                            <figcaption>
+                                <cite>
+                                    <a href="https://pngimg.com/image/12405">Apples</a>
+                                </cite>
+                            </figcaption>
+                        </figure>
+                    </div>
+                        <div class="fridge-item">
+                        <figure>
+                            <a href="fridge-items/fridge-oranges.html">
+                            <img class="fridge-item" src="img/oranges.png" alt="Oranges">
+                            </a>
+                            <figcaption>
+                                <cite>
+                                    <a href="https://gallery.yopriceville.com/Free-Clipart-Pictures/Fruit-PNG/Large_Oranges_PNG_Clipart">Oranges</a>
+                                </cite>
+                            </figcaption>
+                        </figure>
                     </div>
 
                     <div class="fridge-item">
-                        <p>
-                            Item 2
-                        </p>
+                        <figure>
+                            <a href="fridge-items/fridge-bananas.html">
+                            <img class="fridge-item" src="img/bananas.png" alt="Bananas">
+                            </a>
+                            <figcaption>
+                                <cite>
+                                    <a href="https://pngtree.com/freepng/banana-yellow-fruit-banana-skewers_8413319.html">Bananas</a>
+                                </cite>
+                            </figcaption>
+                        </figure>
                     </div>
 
                     <div class="fridge-item">
-                        <p>
-                            Item 3
-                        </p>
+                        <figure>
+                            <a href="fridge-items/fridge-peaches.html">
+                            <img class="fridge-item" src="img/peaches.png" alt="Peaches">
+                            </a>
+                            <figcaption>
+                                <cite>
+                                    <a href="https://gallery.yopriceville.com/Free-Clipart-Pictures/Fruit-PNG/Large_Peaches_PNG_Clipart">Peaches</a>
+                                </cite>
+                            </figcaption>
+                        </figure>
                     </div>
 
                     <div class="fridge-item">
-                        <p>
-                            Item 4
-                        </p>
+                        <figure>
+                            <a href="fridge-items/fridge-blueberries.html">
+                            <img class="fridge-item" src="img/blueberries.png" alt="Blueberries">
+                            </a>
+                            <figcaption>
+                                <cite>
+                                    <a href="https://pngimg.com/image/26708">Blueberries</a>
+                                </cite>
+                            </figcaption>
+                        </figure>
                     </div>
 
-                    <div class="fridge-item">
-                        <p>
-                            Item 5
-                        </p>
-                    </div>
                 </div>
             </section>
-
-            <section class="column">
-                <div class="box">
-                    <h1>
-                        Item Information
-                    </h1>
-                    <p>
-                        Item Description
-                    </p>
-                </div>
-            </section>
-
         </div>
     </main>
 </body>

@@ -1,0 +1,138 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Helvetica", sans-serif;
+    font-size: 0.9rem;
+    margin: 0;
+    width: 100%;
+    background-color: #FFF3DF;
+}
+
+nav {
+    font-size: 1.5rem;
+    list-style-type: none;
+    display: flex;
+    padding: 5px;
+    background-color: white;
+}
+
+nav li a {
+    display: block;
+    color: black;
+    padding: 15px;
+    text-decoration: none;
+}
+
+main div {
+    display: flex;
+    flex-wrap: nowrap;
+    flex: 1;
+}
+
+/* fridge pages */
+
+figcaption cite a {
+    color: inherit;
+    font-style: normal;
+    text-decoration: none;
+}
+
+.notif-column form {
+    padding: 5px;
+}
+
+.notif-column input {
+    width: 100px;
+}
+
+.notif-column {
+    flex: 0 0 20%;
+    padding: 10px 20px;
+    margin: 10px;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 10px;
+}
+
+.fridge-column {
+    flex: 1 0 50%;
+    padding: 10px 20px;
+    margin: 10px;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 10px;
+}
+
+.box {
+    margin: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border: 1px solid black;
+    border-radius: 10px;
+    background-color: #FFFDF9;
+}
+
+.fridge {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    min-width: 50;
+    padding: 15px;
+    margin: 0 auto;
+}
+
+.fridge-item {
+    flex-basis: 25%;
+    width: 100%;
+    height: auto;
+    margin: 3px;
+    padding: 1px;
+    text-align: center;
+    justify-content: center;
+}
+
+.fridge-item figure img {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+}
+
+/* explore page */
+
+#meal {
+    display: inline-block;
+    width: 300px;
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 10px;
+    background-color: lightgrey;
+}
+
+#search {
+    display: block;
+    width: 500px;
+    margin: 20px auto;
+    padding: 15px;
+    padding-left: 30px;
+    border-radius: 50px;
+    background-color: white;
+}
+
+/* media queries */
+
+@media (min-width: 768px) {
+    html {
+        height: 100%;
+    }
+
+    body {
+        font-size: 1rem;
+    }
+
+    nav {
+        font-size: 1rem;
+    }
+}
