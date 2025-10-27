@@ -1,16 +1,59 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <!-- head elements here -->
+ <meta charset="UTF-8" />
+ <title>Sign In / Register </title>
+ <link rel="stylesheet" href="css/app.css" />
 </head>
 
-<body>
-    <main class="login">
-        <h1>Sign in to Meal Planner</h1>
-        <button>Sign in with Google</button>
-        <p>Don’t have an account? <a href="#">Sign up</a></p>
-    </main>
 
-    <!-- Clerk login form here when JS added -->
+<body class="explore-body">
+ <nav>
+   <li><a href="index.html">Home</a></li>
+   <li><a href="fridge.html">Fridge</a></li>
+   <li><a href="explore.html">Explore</a></li>
+ </nav>
+
+
+ <div class="wrap">
+   <div class="auth-row">
+     <!-- Sign In -->
+     <div class="card signin">
+       <h2 class="title">Sign In</h2>
+       <form>
+         <div>
+           <label>Email address</label>
+           <input type="email" placeholder="Email address" required />
+         </div>
+         <div>
+           <label>Password</label>
+           <input type="password" placeholder="Password" required />
+         </div>
+         <button class="btn signin" type="submit">Sign-In</button>
+       </form>
+     </div>
+
+
+     <div class="or">or</div>
+
+
+     <!-- Sign Up -->
+     <div class="card signup">
+       <h2 class="title">Sign up for a free account</h2>
+       <form>
+         <div class="row">
+           <input type="text" placeholder="First name" required />
+           <input type="text" placeholder="Last name" required />
+         </div>
+         <input type="email" placeholder="Email address" required />
+         <input type="password" placeholder="Create password" required />
+         <button class="btn signup" type="submit">Register</button>
+       </form>
+     </div>
+   </div>
+ </div>
 </body>
 </html>
+
+
+

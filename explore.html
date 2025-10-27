@@ -1,53 +1,76 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <title>Your Fridge</title>
-
-    <link rel="stylesheet" href="css/ejstyle.css">
+ <meta charset="UTF-8">
+ <title>Explore • Your Fridge</title>
+ <link rel="stylesheet" href="css/explore.css">
 </head>
+<body class="explore-body">
+   <!-- Navigation -->
+   <nav>
+     <li><a href="index.html">Home</a></li>
+     <li><a href="fridge.html">Fridge</a></li>
+     <li><a href="explore.html">Explore</a></li>
+   </nav>
+    <!-- Search -->
+   <div id="search">
+     <p>🔍 What are you looking for today?</p>
+   </div>
 
-<body>
-    <nav>
-        <li><a href="#home">Home</a></li>
-        <li><a href="#fridge">Fridge</a></li>
-        <li><a href="#explore">Explore</a></li>
-    </nav>
+   <main class="explore-page">
+     <section class="container">
+       <h1>Recommended</h1>
+        <!-- First Row -->
+       <div class="explore-grid">
+         <div class="card">
+           <div class="card-image"></div>
+           <div class="card-footer">
+             <div class="tags">
+               <span class="tag">Has x</span>
+               <span class="tag">Has y</span>
+             </div>
+             <button class="chip">…</button>
+           </div>
+         </div>
+          <div class="card">
+           <div class="card-image"></div>
+           <div class="card-footer">
+             <div class="tags">
+               <span class="tag">Has x</span>
+               <span class="tag">Has y</span>
+             </div>
+             <button class="chip">…</button>
+           </div>
+         </div>
+       </div>
+     </section>
+      <hr class="divider">
+      <!-- Second Row -->
+     <section class="container">
+       <div class="explore-grid">
+         <div class="card card-lg">
+           <div class="card-image"></div>
+           <div class="card-footer">
+             <div class="tags">
+               <span class="tag">Has x</span>
+               <span class="tag">Has y</span>
+             </div>
+             <button class="chip">…</button>
+           </div>
+         </div>
+          <div class="card card-lg">
+           <div class="card-image"></div>
+           <div class="card-footer">
+             <div class="tags">
+               <span class="tag">Has x</span>
+               <span class="tag">Has y</span>
+             </div>
+             <button class="chip">…</button>
+           </div>
+         </div>
+       </div>
+     </section>
+   </main>
+ </body>
+ </html>
 
-    <div id="search">
-            <p> [ICON] What are you looking for today?</p>
-    </div>
-
-    <main>
-        <!-- Upper row -->
-        <div class="container">
-            <h1>Recommended</h1>
-            <!-- Meal Items-->
-             <div>
-                <li id="meal">
-                    <p>Meal Item</p>
-                </li>
-
-                <li id="meal">
-                    <p>Meal Item</p>
-                </li>
-            </div>
-        </div>
-
-        <div class="container">
-            <h1>Trending</h1>
-            <!-- Meal Items-->
-             <div>
-                <li id="meal">
-                    <p>Meal Item</p>
-                </li>
-
-                <li id="meal">
-                    <p>Meal Item</p>
-                </li>
-            </div>
-        </div>
-
-    </main>
-</body>
-</html>

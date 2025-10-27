@@ -1,10 +1,76 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <!-- head elements here -->
-</head>
 
-<body>
-    <!-- body elements here -->
-</body>
-</html>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8"/>
+    <title>homepage</title>
+    <link rel="stylesheet" href="css/app.css"/>
+  </head>
+  <body>
+
+    <nav>
+      <li><a href ="#">Home</a></li>
+      <li><a href ="#">Planner</a></li>
+      <li><a href ="#">Recipes</a></li>
+    </nav>
+
+    <main>
+      <div class="container">
+        <section class="column">
+          <div class="box notice">
+            <h2>Notice!</h2>
+            <p> X is expiring in 3 days!</p>
+            <p> Y is expiring in 4 days!</p>
+          </div>
+          <div class = "box">
+            <h3>Dates</h3>
+            <label for="userDate">Enter today's date:</label>
+            <input type="text" id="userDate" name="userDate" placeholder="MM//DD/YYYY"/>
+          </div>
+        </section>
+        <section class="column">
+          <div class="box welcome">
+            <h2>Welcome Back!</h2>
+            <p> Use the lists below to plan your day.</p>
+          </div>
+          <div class="box">
+            <h3>Today</h3>
+            <ul>
+              <li><input type="text" placeholder="Type here..."></li>
+              <li><input type="text" placeholder="-"></li>
+              <li><input type="text" placeholder="-"></li>
+            </ul>
+          </div>
+          <div class="box">
+            <h3>Tommorow</h3>
+            <ul>
+              <li><input type="text" placeholder="Type here..."></li>
+              <li><input type="text" placeholder="-"></li>
+              <li><input type="text" placeholder="-"></li>
+            </ul>
+          </div>
+        </section>
+        <section class="column">
+          <div class="box suggested-meal">
+            <h3>Suggested meal for the day</h3>
+            <p class="meal-text">
+              Chicken Fried Rice 
+            </p>
+            <h4>Ingredients</h4>
+            <ul class="Ingredients-lists">
+              <li>Chicken, Rice, Egg, Onion, Soy Sauce</li>
+            </ul>
+            <h4>Quick Steps</h4>
+            <ul class="meal-steps">
+              <li>Cook rice</li>
+              <li>Make scrambled eggs</li>
+              <li>Stir-fry chicken</li>
+              <li>Add onions and mix it with chicken</li>
+              <li>Add rice,eggs,and soy sauce</li>
+            </ul>
+          </div>
+        </section>
+      </div>
+    </main>
+  </body>
+</html> 
