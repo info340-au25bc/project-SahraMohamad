@@ -47,6 +47,10 @@ figcaption cite a {
     width: 100px;
 }
 
+.container {
+    display: flex;
+}
+
 .notif-column {
     flex: 0 0 20%;
     padding: 10px 20px;
@@ -56,7 +60,7 @@ figcaption cite a {
     border-radius: 10px;
 }
 
-.fridge-column {
+.column {
     flex: 1 0 50%;
     padding: 10px 20px;
     margin: 10px;
