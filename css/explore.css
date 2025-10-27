@@ -10,17 +10,9 @@ body {
 
 nav {
   display: flex;
-<<<<<<< HEAD
   font-size: 1.5rem;
   padding: 5px;
   background-color: white;
-=======
-  justify-content: space-between;
-  align-items: center;
-  padding: 12px 24px;
-  background: white;
-  border-bottom: 1px solid #ccc;
->>>>>>> refs/remotes/origin/main
 }
 
 .left a {
@@ -48,8 +40,6 @@ nav {
   background: black;
   color: white;
 }
-
-
 
 /* EXPLORE */
 .explore-page .container {
