@@ -37,7 +37,6 @@ main div{
 
 .container{
     display: flex;
-    flex-wrap: nowrap;
 }
 
 .column{
