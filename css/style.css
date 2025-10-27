@@ -188,6 +188,13 @@ figcaption cite a {
     object-fit: contain;
 }
 
+/* MEALS */
+.meal-item {
+  display: block;
+  background-color: white;
+  height: 100%;
+}
+
 /* EXPLORE */
 
 .explore-page .container {
@@ -207,7 +214,7 @@ figcaption cite a {
   box-shadow: 0 1px 2px rgba(0,0,0,.04);
 }
 
-h1 {
+.explore-page h1 {
   margin: 24px 6px 14px;
   font-size: 22px;
   font-weight: 800;
