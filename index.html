@@ -1,91 +1,13 @@
-
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8">
-    <meta name="description" content="A way to plan your meals">
-    <meta name="author" content="Sahra Mohamad, Elina Jeon, Eunseo Chung">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Home • Meal Planner</title>
-
-    <link rel="icon" type="image/png" href="img/favicon.png">
-    <link rel="stylesheet" href="css/style.css">
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>project-sahramohamad</title>
   </head>
-
   <body>
-    <nav>
-        <div class="left">
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="fridge.html">Fridge</a></li>
-                <li><a href="meals.html">Meals</a></li>
-                <li><a href="explore.html">Explore</a></li>
-            </ul>
-        </div>
-        <div class="right">
-            <button class="light"><a href="login.html">Sign in</a></button>
-            <button class="dark"><a href="login.html">Register</a></button>
-        </div>
-    </nav>
-
-    <main>
-      <div class="container">
-        <section class="column">
-          <div class="box notice">
-            <h2>Notice!</h2>
-            <p> X is expiring in 3 days!</p>
-            <p> Y is expiring in 4 days!</p>
-          </div>
-          <div class = "box">
-            <h3>Dates</h3>
-            <label for="userDate">Enter today's date:</label>
-            <input type="text" id="userDate" name="userDate" placeholder="MM//DD/YYYY"/>
-          </div>
-        </section>
-        <section class="column">
-          <div class="box welcome">
-            <h2>Welcome Back!</h2>
-            <p> Use the lists below to plan your day.</p>
-          </div>
-          <div class="box">
-            <h3>Today</h3>
-            <ul>
-              <li><input type="text" placeholder="Type here..."></li>
-              <li><input type="text" placeholder="-"></li>
-              <li><input type="text" placeholder="-"></li>
-            </ul>
-          </div>
-          <div class="box">
-            <h3>Tommorow</h3>
-            <ul>
-              <li><input type="text" placeholder="Type here..."></li>
-              <li><input type="text" placeholder="-"></li>
-              <li><input type="text" placeholder="-"></li>
-            </ul>
-          </div>
-        </section>
-        <section class="column">
-          <div class="box suggested-meal">
-            <h3>Suggested meal for the day</h3>
-            <p class="meal-text">
-              Chicken Fried Rice 
-            </p>
-            <h4>Ingredients</h4>
-            <ul class="Ingredients-lists">
-              <li>Chicken, Rice, Egg, Onion, Soy Sauce</li>
-            </ul>
-            <h4>Quick Steps</h4>
-            <ul class="meal-steps">
-              <li>Cook rice</li>
-              <li>Make scrambled eggs</li>
-              <li>Stir-fry chicken</li>
-              <li>Add onions and mix it with chicken</li>
-              <li>Add rice,eggs,and soy sauce</li>
-            </ul>
-          </div>
-        </section>
-      </div>
-    </main>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
   </body>
-</html> 
+</html>
