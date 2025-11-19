@@ -3,7 +3,7 @@ box-sizing: border-box;
 }
 
 body {
-    font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+    font-family: system-ui, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
     color: #111;
     font-size: 0.9rem;
     margin: 0;
