@@ -378,18 +378,25 @@ input {
 @media (max-width: 600px) {
 
     main div {
+        flex-direction: column;
         flex-wrap: wrap;
+        width: 100%;
     }
 
-    .column,
-    .fridge-column,
-    .notif-column {
+    .column, .fridge-column, .notif-column {
         flex: 1 0 100%;
+        max-width: 100%;
+        margin: 10px 0;
+        box-sizing: border-box;
+    }
+
+    .box, .alert, .welcome, .meal-item {
+        width: 100%;
         max-width: 100%;
     }
 
     .explore-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr !important;
         gap: 1rem;
     }
 
@@ -401,12 +408,19 @@ input {
 
     #search {
         width: 100%;
+        max-width: 100%;
     }
-    
+
+    .fridge-item figure img {
+        width: 80px;
+        height: 80px;
+    }
+
     html, body {
-        overflow-x: auto;
+        overflow-x: hidden;
     }
 }
+
 
 nav {
     position: sticky;
