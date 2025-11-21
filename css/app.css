@@ -384,6 +384,10 @@ input {
         flex-wrap: wrap;
     }
 
+    body, html{
+        overflow-x:auto;
+    }
+
     nav{
         flex-direction: column;
         text-align: center;
@@ -392,6 +396,17 @@ input {
     
     #search{
         width: 100%;
+    }
+}
+
+    .column, .fridge-column, .notif-column{
+        width:100%;
+        max-width:100%;
+    }
+
+    .fridge-item figure img{
+        width:80px;
+        height:80px;
     }
 }
         
