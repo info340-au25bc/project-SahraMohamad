@@ -374,57 +374,40 @@ input {
 
 /* media queries */
 
-@media (max-width : 600 px){
-    .explore-grid{
-        grid-template-columns: 1fr;
-        gap: 1rem;
-    }
+
+@media (max-width: 600px) {
 
     main div {
         flex-wrap: wrap;
     }
 
-    body, html{
-        overflow-x:auto;
+    .column,
+    .fridge-column,
+    .notif-column {
+        flex: 1 0 100%;
+        max-width: 100%;
     }
 
-    nav{
+    .explore-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    nav {
         flex-direction: column;
         text-align: center;
         gap: 8px;
     }
-    
-    #search{
+
+    #search {
         width: 100%;
     }
-}
-
-    .column, .fridge-column, .notif-column{
-        width:100%;
-        max-width:100%;
-    }
-
-    .fridge-item figure img{
-        width:80px;
-        height:80px;
+    
+    html, body {
+        overflow-x: auto;
     }
 }
-        
 
-@media (min-width: 768px) {
-    html {
-        height: 100%;
-    }
-
-    body {
-        font-size: 1rem;
-    }
-
-    nav {
-        font-size: 1rem;
-    }
-}
-/* Fix Navigation Bar */
 nav {
     position: sticky;
     top: 0;
