@@ -2,13 +2,36 @@
 box-sizing: border-box;
 }
 
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
 body {
-    font-family: system-ui, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
     color: #111;
     font-size: 0.9rem;
     margin: 0;
     width: 100%;
     background-color: #FFF3DF;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+#root {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    width: 100%;
+}
+
+main {
+    flex: 1;
+}
+
+footer {
+    margin-top: auto;
 }
 
 nav {
@@ -41,28 +64,20 @@ nav li a {
     font-weight: 500;
   }
   
-.right button {
+.right .btn-dark {
     margin-left: 10px;
     padding: 8px 14px;
     border-radius: 8px;
     cursor: pointer;
     font-weight: 600;
-    border: none;
-}
-  
-.right .light {
-    background: #f0f0f0;
-    color: black;
-}
-  
-.right .dark {
     background: black;
     color: white;
+    text-decoration: none;
+    display: inline-block;
 }
 
-.right a {
-  text-decoration: none;
-  color: inherit;
+.right .btn-dark:hover {
+    background: #333;
 }
 
 main div {
@@ -175,17 +190,55 @@ figcaption cite a {
 .fridge-item {
     flex-basis: 25%;
     width: 100%;
-    height: auto;
+    min-height: 150px;
+    max-height: 150px;
     margin: 3px;
-    padding: 1px;
+    padding: 5px;
     text-align: center;
+    display: flex;
+    align-items: center;
     justify-content: center;
+}
+
+.fridge-item figure {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.fridge-item figure a {
+    display: block;
+    width: 100px;
+    height: 100px;
+    flex-shrink: 0;
 }
 
 .fridge-item figure img {
     width: 100px;
     height: 100px;
     object-fit: contain;
+    display: block;
+    transition: transform 0.2s ease;
+}
+
+.fridge-item figure a:hover img {
+    transform: scale(1.05);
+}
+
+.fridge-item figcaption {
+    min-height: 24px;
+    max-height: 24px;
+    font-size: 12px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;
+    margin-top: 4px;
 }
 
 /* MEALS */
@@ -375,8 +428,7 @@ input {
 /* media queries */
 
 
-@media (max-width: 600px) {
-
+@media (max-width: 768px) {
     main div {
         flex-direction: column;
         flex-wrap: wrap;
@@ -386,7 +438,7 @@ input {
     .column, .fridge-column, .notif-column {
         flex: 1 0 100%;
         max-width: 100%;
-        margin: 10px 0;
+        margin: 10px 5px;
         box-sizing: border-box;
     }
 
@@ -404,11 +456,27 @@ input {
         flex-direction: column;
         text-align: center;
         gap: 8px;
+        padding: 10px 5px;
+    }
+
+    nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    nav li a {
+        padding: 10px 8px;
+        font-size: 14px;
+    }
+
+    .left a {
+        margin-right: 8px;
     }
 
     #search {
-        width: 100%;
+        width: calc(100% - 20px);
         max-width: 100%;
+        padding: 12px 20px;
     }
 
     .fridge-item figure img {
@@ -416,8 +484,147 @@ input {
         height: 80px;
     }
 
+    .fridge {
+        padding: 10px 5px;
+        max-width: 100%;
+    }
+
+    .fridge-item {
+        flex-basis: 50%;
+        max-width: 50%;
+    }
+
+    .fridge-item figure a {
+        width: 70px;
+        height: 70px;
+    }
+
+    .explore-page .container {
+        padding: 0 10px;
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 600px) {
     html, body {
         overflow-x: hidden;
+        width: 100%;
+        max-width: 100vw;
+    }
+
+    * {
+        max-width: 100%;
+        word-wrap: break-word;
+        box-sizing: border-box;
+    }
+
+    main {
+        width: 100%;
+        max-width: 100vw;
+        overflow-x: hidden;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    main > div {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: hidden;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    .column {
+        margin: 10px 5px;
+        width: calc(100% - 10px);
+    }
+
+    .fridge-column, .notif-column {
+        margin: 10px 5px;
+        padding: 10px;
+        width: calc(100% - 10px);
+    }
+
+    .box, .alert, .welcome {
+        margin: 10px 5px;
+        padding: 10px;
+        width: calc(100% - 10px);
+    }
+
+    nav {
+        width: 100%;
+        padding: 8px 5px;
+    }
+
+    nav ul {
+        padding: 0;
+        margin: 0;
+    }
+
+    nav li {
+        margin: 0;
+    }
+
+    nav li a {
+        padding: 8px 6px;
+        font-size: 13px;
+    }
+
+    .left a {
+        margin-right: 5px;
+    }
+
+    .right .btn-dark {
+        margin-left: 5px;
+        padding: 6px 10px;
+        font-size: 13px;
+    }
+
+    #search {
+        width: calc(100% - 20px);
+        margin: 15px 10px;
+        padding: 10px 15px;
+    }
+
+    .auth-row {
+        flex-direction: column;
+        gap: 20px;
+        height: auto;
+    }
+
+    .auth-row .card {
+        width: calc(100% - 20px);
+        max-width: 400px;
+        margin: 10px;
+    }
+
+    .wrap {
+        margin: 60px auto 0;
+        padding: 0 10px 40px;
+    }
+
+    .or {
+        margin: 10px 0;
+    }
+
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    .welcome {
+        padding: 20px 10px;
+        font-size: 1.1em;
+        width: calc(100% - 20px);
+    }
+
+    .Ingreidents-list, .meal-steps {
+        padding: 8px 12px;
+    }
+
+    textarea, input[type="text"] {
+        max-width: 100%;
     }
 }
 
