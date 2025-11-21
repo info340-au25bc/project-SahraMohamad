@@ -19,7 +19,7 @@ export default function FridgePage() {
             <div className="fridge-item">
               <figure>
                 <a href="/fridge-items/fridge-apples.html">
-                  <img className="fridge-item" src="img/apple.png" alt="Apples" />
+                  <img className="fridge-item" src="/img/apple.png" alt="Apples" />
                 </a>
                 <figcaption>
                   <cite>
@@ -31,7 +31,7 @@ export default function FridgePage() {
             <div className="fridge-item">
               <figure>
                 <a href="/fridge-items/fridge-oranges.html">
-                  <img className="fridge-item" src="img/oranges.png" alt="Oranges" />
+                  <img className="fridge-item" src="/img/oranges.png" alt="Oranges" />
                 </a>
                 <figcaption>
                   <cite>
@@ -44,7 +44,7 @@ export default function FridgePage() {
             <div className="fridge-item">
               <figure>
                 <a href="/fridge-items/fridge-bananas.html">
-                  <img className="fridge-item" src="img/bananas.png" alt="Bananas" />
+                  <img className="fridge-item" src="/img/bananas.png" alt="Bananas" />
                 </a>
                 <figcaption>
                   <cite>
@@ -57,7 +57,7 @@ export default function FridgePage() {
             <div className="fridge-item">
               <figure>
                 <a href="/fridge-items/fridge-peaches.html">
-                  <img className="fridge-item" src="img/peaches.png" alt="Peaches" />
+                  <img className="fridge-item" src="/img/peaches.png" alt="Peaches" />
                 </a>
                 <figcaption>
                   <cite>
@@ -70,7 +70,7 @@ export default function FridgePage() {
             <div className="fridge-item">
               <figure>
                 <a href="/fridge-items/fridge-blueberries.html">
-                  <img className="fridge-item" src="img/blueberries.png" alt="Blueberries" />
+                  <img className="fridge-item" src="/img/blueberries.png" alt="Blueberries" />
                 </a>
                 <figcaption>
                   <cite>
