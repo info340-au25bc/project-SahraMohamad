@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-
+<header>
 export default function Navbar() {
   return (
     <nav>
@@ -17,5 +17,6 @@ export default function Navbar() {
         </button>
       </div>
     </nav>
+</header>
   );
 }
