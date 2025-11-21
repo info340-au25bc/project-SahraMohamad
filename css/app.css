@@ -374,67 +374,74 @@ input {
 
 /* media queries */
 
+@media (max-width: 768px) {
+   main div {
+       flex-direction: column;
+       flex-wrap: wrap;
+       width: 100%;
+   }
 
-@media (max-width: 600px) {
 
-    main div {
-        flex-direction: column;
-        flex-wrap: wrap;
-        width: 100%;
-    }
+   .column, .fridge-column, .notif-column {
+       flex: 1 0 100%;
+       max-width: 100%;
+       margin: 10px 5px;
+       box-sizing: border-box;
+   }
 
-    .column, .fridge-column, .notif-column {
-        flex: 1 0 100%;
-        max-width: 100%;
-        margin: 10px 0;
-        box-sizing: border-box;
-    }
 
-    .box, .alert, .welcome, .meal-item {
-        width: 100%;
-        max-width: 100%;
-    }
+   .box, .alert, .welcome, .meal-item {
+       width: 100%;
+       max-width: 100%;
+   }
 
-    .explore-grid {
-        grid-template-columns: 1fr !important;
-        gap: 1rem;
-    }
 
-    nav {
-        flex-direction: column;
-        text-align: center;
-        gap: 8px;
-    }
+   .explore-grid {
+       grid-template-columns: 1fr !important;
+       gap: 1rem;
+   }
 
-    #search {
-        width: 100%;
-        max-width: 100%;
-    }
 
-    .fridge-item figure img {
-        width: 80px;
-        height: 80px;
-    }
+   nav {
+       flex-direction: column;
+       text-align: center;
+       gap: 8px;
+       padding: 10px 5px;
+   }
 
-    html, body {
-        overflow-x: hidden;
-    }
+
+   nav ul {
+       flex-wrap: wrap;
+       justify-content: center;
+   }
+
+
+   nav li a {
+       padding: 10px 8px;
+       font-size: 14px;
+   }
+
+
+   .left a {
+       margin-right: 8px;
+   }
+
+
+   #search {
+       width: calc(100% - 20px);
+       max-width: 100%;
+       padding: 12px 20px;
+   }
+
+
+   .fridge-item figure img {
+       width: 80px;
+       height: 80px;
+   }
+
+
+   .fridge {
+       padding: 10px 5px;
+   }
 }
 
-
-nav {
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    width: 100%;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-nav .left ul {
-    align-items: center;
-}
-
-nav .right {
-    display: flex;
-    align-items: center;
-}
