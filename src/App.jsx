@@ -11,16 +11,18 @@ import "../css/app.css";
 export default function App() {
   return (
     <Router>
-      <div>
+      <div className="app-shell">
         <Navbar />
 
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/fridge" element={<FridgePage />} />
-          <Route path="/explore" element={<ExplorePage />} />
-          <Route path="/favorites" element={<Favorites />} />
-          <Route path="/login" element={<LoginPage />} />
-        </Routes>
+        <div className="page-content">
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/fridge" element={<FridgePage />} />
+            <Route path="/explore" element={<ExplorePage />} />
+            <Route path="/favorites" element={<Favorites />} />
+            <Route path="/login" element={<LoginPage />} />
+          </Routes>
+        </div>
 
         <Footer />
       </div>

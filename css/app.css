@@ -26,6 +26,19 @@ body {
     width: 100%;
 }
 
+.app-shell {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    width: 100%;
+}
+
+.page-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
 main {
     flex: 1;
 }
@@ -169,6 +182,21 @@ figcaption cite a {
   color: red;
 }
 
+.alert.soon {
+  border-color: #f0a52b;
+  background-color: #fff5e1;
+}
+
+.alert.urgent {
+  border-color: #d87a00;
+  background-color: #ffe0c2;
+}
+
+.alert.expired {
+  border-color: #b3261e;
+  background-color: #ffe6e2;
+}
+
 .fridge {
     display: flex;
     flex-wrap: wrap;
@@ -185,6 +213,86 @@ figcaption cite a {
     background-color: white;
     border: 1px solid black;
     border-radius: 10px;
+}
+
+.fridge-upload-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 10px 0 20px;
+    padding: 12px;
+    border: 1px dashed #c9c2b3;
+    border-radius: 10px;
+    background: #fffdf9;
+}
+
+.fridge-upload-form h2 {
+    margin: 0;
+    font-size: 1.2rem;
+}
+
+.upload-status {
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.upload-status.error {
+    color: #b3261e;
+}
+
+.upload-status.success {
+    color: #026e35;
+}
+
+.expiration-control {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    width: 100%;
+    margin-top: 6px;
+}
+
+.expiration-input-row {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+}
+
+.expiration-control input[type="date"] {
+    flex: 1;
+    min-height: 32px;
+}
+
+.clear-expiration-btn {
+    border: none;
+    background: #f0f0f0;
+    border-radius: 6px;
+    padding: 6px 10px;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.clear-expiration-btn:hover {
+    background: #e0e0e0;
+}
+
+.expiration-status {
+    font-size: 12px;
+    font-weight: 600;
+    margin: 0;
+}
+
+.expiration-status.soon,
+.expiration-status.urgent {
+    color: #d87a00;
+}
+
+.expiration-status.expired {
+    color: #b3261e;
+}
+
+.expiration-status.scheduled {
+    color: #4d6654;
 }
 
 .fridge-item {
@@ -241,6 +349,21 @@ figcaption cite a {
     margin-top: 4px;
 }
 
+.remove-item-btn {
+    margin-top: 6px;
+    border: none;
+    background: #ffe9e9;
+    color: #8b1a1a;
+    font-size: 12px;
+    border-radius: 6px;
+    padding: 4px 8px;
+    cursor: pointer;
+}
+
+.remove-item-btn:hover {
+    background: #ffd1d1;
+}
+
 /* MEALS */
 .meal-item {
   display: block;
@@ -267,10 +390,38 @@ figcaption cite a {
   box-shadow: 0 1px 2px rgba(0,0,0,.04);
 }
 
+#search label {
+  font-size: 14px;
+  color: #7a6f5d;
+  font-weight: 600;
+}
+
+#search input {
+  border: none;
+  background: transparent;
+  font-size: 18px;
+  font-weight: 600;
+  padding: 6px 0 0;
+  width: 100%;
+  outline: none;
+  color: #2f2a20;
+}
+
+#search input::placeholder {
+  font-weight: 400;
+  color: #a9a198;
+}
+
 .explore-page h1 {
   margin: 24px 6px 14px;
   font-size: 22px;
   font-weight: 800;
+}
+
+.search-meta {
+  margin: 0 6px 20px;
+  color: #6b6254;
+  font-size: 14px;
 }
 
 .divider {
@@ -300,7 +451,21 @@ figcaption cite a {
 .explore-grid .card-image {
   height: 170px;
   background: #fff;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: flex-end;
+  padding: 12px;
+  color: #fff;
   border-bottom: none;
+}
+
+.card-placeholder {
+  font-weight: 600;
+  font-size: 14px;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 4px 8px;
+  border-radius: 6px;
 }
 
 .explore-grid .card-footer {
@@ -311,6 +476,35 @@ figcaption cite a {
   gap: 12px;
   padding: 14px;
   border-top: 1px solid #eadfcd;
+}
+
+.empty-results {
+  padding: 40px 24px;
+  text-align: center;
+  border: 1px dashed #eadfcd;
+  border-radius: 14px;
+  background: #fffdf9;
+  color: #6b6254;
+}
+
+.empty-results .chip {
+  margin-top: 16px;
+  border-color: #d7ccba;
+}
+
+.results-state {
+  padding: 12px 18px;
+  border-radius: 10px;
+  background: #fff7eb;
+  border: 1px solid #f6dcb3;
+  color: #8a5b1e;
+  margin: 10px 6px 20px;
+}
+
+.results-state.error {
+  background: #ffeaea;
+  border-color: #f8b3b3;
+  color: #a32424;
 }
 
 .tags { display: flex; gap: 10px; flex-wrap: wrap; }
@@ -423,6 +617,33 @@ input {
 .btn.signup {
   background: #2f8cff;
   color: #fff;
+}
+
+.form-status {
+  margin: 4px 0 0;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.form-status.error {
+  color: #ffd2d2;
+}
+
+.form-status.success {
+  color: #c8ffd2;
+}
+
+.session-info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 15px;
+}
+
+.session-email {
+  font-size: 13px;
+  color: #f4f4f4;
+  margin: -6px 0 4px;
 }
 
 /* media queries */

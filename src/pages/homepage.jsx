@@ -1,6 +1,8 @@
 import { useState } from 'react';
+import { useAuth } from '../context/AuthContext.jsx';
 
 export default function HomePage() {
+  const { activeUser } = useAuth();
   const [notices, setNotices] = useState([
     { item: 'X', days: 3 },
     { item: 'Y', days: 4 }
@@ -76,8 +78,14 @@ export default function HomePage() {
 
         <section className="column">
           <div className="box welcome">
-            <h2>Welcome Back!</h2>
-            <p>Use the lists below to plan your day.</p>
+            <h2>
+              {activeUser ? `Welcome back, ${activeUser.firstName}!` : 'Welcome Back!'}
+            </h2>
+            <p>
+              {activeUser
+                ? `Here's what's on your radar today, ${activeUser.firstName}.`
+                : 'Use the lists below to plan your day.'}
+            </p>
           </div>
 
           <div className="box">

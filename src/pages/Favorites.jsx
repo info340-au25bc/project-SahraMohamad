@@ -36,9 +36,11 @@ export default function Favorites() {
         
         {/* Interactive Search Bar */}
         <div id="search">
+          <label htmlFor="favorites-search">🔍 Search favorites</label>
           <input
-            type="text"
-            placeholder="🔍 Search favorites..."
+            id="favorites-search"
+            type="search"
+            placeholder="Try “tacos”, “lunch”, etc."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             style={{border: 'none', outline: 'none', width: '100%', background: 'transparent'}}
@@ -48,8 +50,12 @@ export default function Favorites() {
         
         <div style={{display: 'flex', gap: '20px', margin: '20px 0'}}>
           <div>
-            <label>Filter by type: </label>
-            <select value={filterType} onChange={(e) => setFilterType(e.target.value)}>
+            <label htmlFor="favorites-type-filter">Filter by type</label>
+            <select
+              id="favorites-type-filter"
+              value={filterType}
+              onChange={(e) => setFilterType(e.target.value)}
+            >
               <option value="All">All</option>
               <option value="Breakfast">Breakfast</option>
               <option value="Lunch">Lunch</option>
@@ -58,8 +64,12 @@ export default function Favorites() {
           </div>
           
           <div>
-            <label>Sort by: </label>
-            <select value={sortBy} onChange={(e) => setSortBy(e.target.value)}>
+            <label htmlFor="favorites-sort">Sort by</label>
+            <select
+              id="favorites-sort"
+              value={sortBy}
+              onChange={(e) => setSortBy(e.target.value)}
+            >
               <option value="name">Name</option>
               <option value="calories">Calories</option>
             </select>
@@ -70,7 +80,11 @@ export default function Favorites() {
           {sortedRecipes.length > 0 ? (
             sortedRecipes.map((recipe) => (
               <div key={recipe.id} className="card">
-                <div className="card-image"></div>
+                <div
+                  className="card-image"
+                  role="img"
+                  aria-label={`${recipe.name} placeholder image`}
+                ></div>
                 <div className="card-footer">
                   <div>
                     <h3>{recipe.name}</h3>
