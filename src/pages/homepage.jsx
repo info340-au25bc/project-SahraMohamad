@@ -1,181 +1,133 @@
-import { useState } from 'react';
-import { useAuth } from '../context/AuthContext.jsx';
+import { useState } from "react";
+import heroImage from "../../img/hero.jpg";
+import "../App.css";
 
 export default function HomePage() {
-  const { activeUser } = useAuth();
-  const [notices, setNotices] = useState([
-    { item: 'X', days: 3 },
-    { item: 'Y', days: 4 }
-  ]);
-  const [todayTasks, setTodayTasks] = useState(['----------', '-----------', '-----------']);
-  const [tomorrowTasks, setTomorrowTasks] = useState([]);
-  const [newTask, setNewTask] = useState('');
-  const [newTomorrowTask, setNewTomorrowTask] = useState('');
-  const [mealName, setMealName] = useState('Chicken Fried Rice');
-  const [ingredients, setIngredients] = useState('Chicken, Rice, Egg, Onion, Soy Sauce');
-  const [steps, setSteps] = useState([
-    'Cook rice',
-    'Make scrambled eggs',
-    'Stir-fry chicken',
-    'Add onions and mix it with chicken',
-    'Add rice, eggs, and soy sauce'
-  ]);
-  const [newStep, setNewStep] = useState('');
+  const [age, setAge] = useState("");
+  const [height, setHeight] = useState("");
+  const [weight, setWeight] = useState("");
+  const [activity, setActivity] = useState("Sedentary");
+  const [tdee, setTdee] = useState(null);
 
-  const addTodayTask = () => {
-    if (newTask.trim()) {
-      setTodayTasks([...todayTasks, newTask]);
-      setNewTask('');
-    }
+  const activityLevels = {
+    Sedentary: 1.2,
+    "Light Activity": 1.375,
+    "Moderate Activity": 1.55,
+    "Very Active": 1.725,
   };
 
-  const addTomorrowTask = () => {
-    if (newTomorrowTask.trim()) {
-      setTomorrowTasks([...tomorrowTasks, newTomorrowTask]);
-      setNewTomorrowTask('');
-    }
+  const calculateTDEE = () => {
+    if (!age || !height || !weight) return;
+    const bmr = 10 * weight + 6.25 * height - 5 * age + 5;
+    setTdee(Math.round(bmr * activityLevels[activity]));
   };
 
-  const addStep = () => {
-    if (newStep.trim()) {
-      setSteps([...steps, newStep]);
-      setNewStep('');
-    }
-  };
+  const [waterWeight, setWaterWeight] = useState("");
+  const [waterResult, setWaterResult] = useState(null);
 
-  const removeTask = (index, isToday) => {
-    if (isToday) {
-      setTodayTasks(todayTasks.filter((_, i) => i !== index));
-    } else {
-      setTomorrowTasks(tomorrowTasks.filter((_, i) => i !== index));
-    }
+  const calculateWater = () => {
+    if (!waterWeight) return;
+    let ounces = Math.round(waterWeight * 0.67);
+    setWaterResult(ounces);
   };
 
   return (
-    <main>
-      <div>
-        <section className="column">
-          <div className="box notice">
-            <h2>Notice!</h2>
-            {notices.map((notice, index) => (
-              <p key={index}>
-                <strong>{notice.item}</strong> is expiring in {notice.days} days!
+    <main className="homepage">
+      <section className="hero-section">
+        <img src={heroImage} alt="Healthy Living" className="hero-image" />
+        <div className="hero-overlay"></div>
+
+        <div className="hero-text">
+          <h1>Healthy Living, Made Simple</h1>
+          <p>Your nutrition & lifestyle assistant.</p>
+        </div>
+      </section>
+
+      <div className="content-wrapper">
+
+        <div className="two-column">
+          
+          <section className="card">
+            <h2>Daily Calorie Needs (TDEE)</h2>
+            <p className="description">Estimate your daily calorie needs.</p>
+
+            <div className="grid">
+              <input type="number" placeholder="Age"
+                value={age} onChange={(e) => setAge(e.target.value)} />
+
+              <input type="number" placeholder="Height (cm)"
+                value={height} onChange={(e) => setHeight(e.target.value)} />
+
+              <input type="number" placeholder="Weight (kg)"
+                value={weight} onChange={(e) => setWeight(e.target.value)} />
+
+              <select value={activity}
+                onChange={(e) => setActivity(e.target.value)}>
+                <option>Sedentary</option>
+                <option>Light Activity</option>
+                <option>Moderate Activity</option>
+                <option>Very Active</option>
+              </select>
+
+              <button onClick={calculateTDEE}>Calculate TDEE</button>
+            </div>
+
+            {tdee && (
+              <p className="result">Your TDEE: <strong>{tdee}</strong> calories/day</p>
+            )}
+          </section>
+
+          <section className="card">
+            <h2>Daily Water Intake</h2>
+            <p className="description">Enter your weight to estimate water intake.</p>
+
+            <div className="grid">
+              <input type="number" placeholder="Weight (kg)"
+                value={waterWeight} onChange={(e) => setWaterWeight(e.target.value)} />
+
+              <button onClick={calculateWater}>Calculate Water Intake</button>
+            </div>
+
+            {waterResult && (
+              <p className="result">
+                Recommended: <strong>{waterResult} oz</strong> of water/day
               </p>
-            ))}
-          </div>
+            )}
+          </section>
+        </div>
 
-          <div className="box">
-            <h3>Dates</h3>
-            <label htmlFor="userDate">Enter today's date:</label>
-            <input
-              type="text"
-              id="userDate"
-              name="userDate"
-              placeholder="MM/DD/YYYY"
-            />
-          </div>
-        </section>
-
-        <section className="column">
-          <div className="box welcome">
-            <h2>
-              {activeUser ? `Welcome back, ${activeUser.firstName}!` : 'Welcome Back!'}
-            </h2>
-            <p>
-              {activeUser
-                ? `Here's what's on your radar today, ${activeUser.firstName}.`
-                : 'Use the lists below to plan your day.'}
-            </p>
-          </div>
-
-          <div className="box">
-            <h3>Today</h3>
-            <ul>
-              {todayTasks.map((task, index) => (
-                <li key={index}>
-                  {task}
-                  {task !== '----------' && task !== '-----------' && (
-                    <button onClick={() => removeTask(index, true)} style={{marginLeft: '10px', fontSize: '12px'}}>✕</button>
-                  )}
-                </li>
-              ))}
-            </ul>
-            <div style={{marginTop: '10px'}}>
-              <input
-                type="text"
-                value={newTask}
-                onChange={(e) => setNewTask(e.target.value)}
-                placeholder="Add new task..."
-                style={{width: '70%'}}
-              />
-              <button onClick={addTodayTask} style={{marginLeft: '5px'}}>Add</button>
-            </div>
-          </div>
-
-          <div className="box">
-            <h3>Tomorrow</h3>
-            <ul>
-              {tomorrowTasks.map((task, index) => (
-                <li key={index}>
-                  {task}
-                  <button onClick={() => removeTask(index, false)} style={{marginLeft: '10px', fontSize: '12px'}}>✕</button>
-                </li>
-              ))}
-            </ul>
-            <div style={{marginTop: '10px'}}>
-              <input
-                type="text"
-                value={newTomorrowTask}
-                onChange={(e) => setNewTomorrowTask(e.target.value)}
-                placeholder="Add task for tomorrow..."
-                style={{width: '70%'}}
-              />
-              <button onClick={addTomorrowTask} style={{marginLeft: '5px'}}>Add</button>
-            </div>
-          </div>
-        </section>
-
-        <section className="column">
-          <div className="box suggested-meal">
-            <h3>Suggested meal for the day</h3>
-            <input
-              type="text"
-              value={mealName}
-              onChange={(e) => setMealName(e.target.value)}
-              className="meal-text"
-              style={{fontSize: '16px', marginBottom: '10px', width: '100%'}}
-            />
-
-            <h4>Ingredients</h4>
-            <div className="Ingreidents-list">
-              <textarea
-                value={ingredients}
-                onChange={(e) => setIngredients(e.target.value)}
-                style={{width: '100%', minHeight: '60px'}}
-              />
-            </div>
-
-            <h4>Quick Steps</h4>
-            <div className="meal-steps">
-              <ol>
-                {steps.map((step, index) => (
-                  <li key={index}>{step}</li>
-                ))}
-              </ol>
-              <div style={{marginTop: '10px'}}>
-                <input
-                  type="text"
-                  value={newStep}
-                  onChange={(e) => setNewStep(e.target.value)}
-                  placeholder="Add new step..."
-                  style={{width: '70%'}}
-                />
-                <button onClick={addStep} style={{marginLeft: '5px'}}>Add</button>
-              </div>
-            </div>
-          </div>
-        </section>
-      </div>
+     </div>
     </main>
   );
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
