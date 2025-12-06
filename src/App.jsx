@@ -6,6 +6,7 @@ import FridgePage from "./pages/FridgePage.jsx";
 import ExplorePage from "./pages/ExplorePage.jsx";
 import Favorites from "./pages/MyMeals.jsx";
 import LoginPage from "./pages/LoginPage.jsx";
+import FridgeItemDetail from "./pages/FridgeItemDetail.jsx";
 import "../css/app.css";
 
 export default function App() {
@@ -18,6 +19,7 @@ export default function App() {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/fridge" element={<FridgePage />} />
+            <Route path="/fridge-items/:slug" element={<FridgeItemDetail />} />
             <Route path="/explore" element={<ExplorePage />} />
             <Route path="/favorites" element={<MyMeals />} />
             <Route path="/login" element={<LoginPage />} />

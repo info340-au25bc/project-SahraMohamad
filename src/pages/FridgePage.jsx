@@ -1,35 +1,11 @@
 import { useEffect, useMemo, useState } from "react";
+import { Link } from "react-router-dom";
+import { presetFridgeItems } from "../data/fridgeItems.js";
 
 const CUSTOM_FRIDGE_KEY = "prepPalCustomFridgeItems";
 const ITEM_EXPIRATIONS_KEY = "prepPalFridgeExpirations";
 const PRESET_FRIDGE_KEY = "prepPalPresetFridgeItems";
 const MS_IN_DAY = 1000 * 60 * 60 * 24;
-
-const presetItems = [
-  {
-    id: "apples",
-    name: "Apples",
-    image: "/img/apple.png",
-    detailHref: "/fridge-items/fridge-apples.html",
-    creditHref: "https://pngimg.com/image/12405",
-  },
-  {
-    id: "oranges",
-    name: "Oranges",
-    image: "/img/oranges.png",
-    detailHref: "/fridge-items/fridge-oranges.html",
-    creditHref:
-      "https://gallery.yopriceville.com/Free-Clipart-Pictures/Fruit-PNG/Large_Oranges_PNG_Clipart",
-  },
-  {
-    id: "bananas",
-    name: "Bananas",
-    image: "/img/bananas.png",
-    detailHref: "/fridge-items/fridge-bananas.html",
-    creditHref:
-      "https://pngtree.com/freepng/banana-yellow-fruit-banana-skewers_8413319.html",
-  },
-];
 
 const readJson = (key, fallback) => {
   if (typeof window === "undefined") {
@@ -46,7 +22,27 @@ const readJson = (key, fallback) => {
 
 const readCustomItems = () => readJson(CUSTOM_FRIDGE_KEY, []);
 const readItemExpirations = () => readJson(ITEM_EXPIRATIONS_KEY, {});
-const readPresetItems = () => readJson(PRESET_FRIDGE_KEY, presetItems);
+const readPresetItems = () => {
+  const stored = readJson(PRESET_FRIDGE_KEY, null);
+  const fallback = presetFridgeItems.slice(0, 2); // keep at least two example items
+
+  if (!Array.isArray(stored) || stored.length === 0) {
+    return fallback;
+  }
+
+  // Keep any local changes (like removed items) but normalize links and images.
+  return stored
+    .map((item) => {
+      const canonical = presetFridgeItems.find(
+        (preset) => preset.id === item.id
+      );
+
+      return canonical
+        ? { ...canonical, ...item, detailHref: canonical.detailHref }
+        : item;
+    })
+    .filter(Boolean);
+};
 
 const makeId = () => {
   if (typeof crypto !== "undefined" && crypto.randomUUID) {
@@ -358,9 +354,9 @@ export default function FridgePage() {
 
 function FridgeItemCard({ item, onRemove, onExpirationChange }) {
   const imageElement = item.detailHref ? (
-    <a href={item.detailHref}>
+    <Link to={item.detailHref}>
       <img className="fridge-item" src={item.image} alt={item.name} />
-    </a>
+    </Link>
   ) : (
     <img className="fridge-item" src={item.image} alt={item.name} />
   );

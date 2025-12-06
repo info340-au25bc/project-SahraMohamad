@@ -646,6 +646,100 @@ input {
   margin: -6px 0 4px;
 }
 
+.fridge-item-detail-page {
+  padding: 40px 20px;
+}
+
+.fridge-item-detail-page div {
+  display: block;
+  flex: initial;
+  flex-wrap: initial;
+}
+
+.fridge-item-detail {
+  max-width: 1000px;
+  margin: 0 auto;
+  background: #fff;
+  border: 1px solid #eadfcd;
+  border-radius: 16px;
+  padding: 28px;
+  display: grid;
+  gap: 24px;
+  grid-template-columns: 260px 1fr;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.05);
+}
+
+.fridge-item-detail .detail-image {
+  background: linear-gradient(135deg, #fff7ed, #f5f0e5);
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.fridge-item-detail img {
+  max-width: 200px;
+  max-height: 200px;
+  object-fit: contain;
+}
+
+.detail-content h1 {
+  margin: 4px 0 12px;
+}
+
+.detail-eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 700;
+  font-size: 11px;
+  color: #9a7d57;
+  margin: 0 0 6px;
+}
+
+.detail-summary {
+  color: #51473d;
+  margin: 0 0 12px;
+  font-size: 15px;
+}
+
+.detail-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+  margin: 18px 0;
+}
+
+.detail-grid h2 {
+  margin: 0 0 10px;
+  font-size: 16px;
+}
+
+.detail-grid ul {
+  padding-left: 18px;
+  margin: 0;
+  display: flex;
+  gap: 8px;
+  flex-direction: column;
+}
+
+.detail-grid li {
+  color: #3a332c;
+  line-height: 1.5;
+  font-size: 14px;
+}
+
+.detail-actions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-top: 8px;
+}
+
+.detail-actions .chip {
+  text-decoration: none;
+}
+
 /* media queries */
 
 
