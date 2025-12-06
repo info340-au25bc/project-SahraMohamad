@@ -4,7 +4,7 @@ import Footer from "./components/Footer";
 import HomePage from "./pages/homepage.jsx";
 import FridgePage from "./pages/FridgePage.jsx";
 import ExplorePage from "./pages/ExplorePage.jsx";
-import Favorites from "./pages/MyMeals.jsx";
+import MyMeals from "./pages/MyMeals.jsx";
 import LoginPage from "./pages/LoginPage.jsx";
 import FridgeItemDetail from "./pages/FridgeItemDetail.jsx";
 import "../css/app.css";
