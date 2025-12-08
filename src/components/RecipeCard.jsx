@@ -1,4 +1,4 @@
-export default function RecipeCard({ recipe, onFavorite }) {
+export default function RecipeCard({ recipe, onFavorite, isFavorited }) {
   const backgroundStyle = recipe.image
     ? {
         backgroundImage: `linear-gradient(0deg, rgba(0, 0, 0, 0.35), rgba(0,0,0,.35)), url(${recipe.image})`,
@@ -38,8 +38,12 @@ export default function RecipeCard({ recipe, onFavorite }) {
           )}
         </div>
         {onFavorite && (
-          <button className="chip" onClick={() => onFavorite(recipe)}>
-            ♥ Add to Favorites
+          <button 
+            className="chip" 
+            onClick={() => onFavorite(recipe)}
+            disabled={isFavorited}
+          >
+            {isFavorited ? '❤️ Added' : '+ Add to My Meals'}
           </button>
         )}
       </div>

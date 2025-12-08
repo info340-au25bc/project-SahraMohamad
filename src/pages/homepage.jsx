@@ -1,9 +1,11 @@
 import { useState } from "react";
+import { useAuth } from "../context/AuthContext.jsx";
 import heroImage from "../../img/hero.jpg";
 import "../App.css";
 
 
 export default function HomePage() {
+ const { activeUser } = useAuth();
  const [age, setAge] = useState("");
  const [height, setHeight] = useState("");
  const [weight, setWeight] = useState("");
@@ -60,7 +62,11 @@ export default function HomePage() {
 
 
      <div id="calculators" className="content-wrapper">
-
+       {activeUser && (
+         <p style={{ textAlign: 'center', fontSize: '1.3rem', marginBottom: '30px', fontWeight: '600' }}>
+           Hello {activeUser.firstName}, let's learn about intake!
+         </p>
+       )}
 
        <div className="two-column">
         
@@ -128,46 +134,3 @@ export default function HomePage() {
    </main>
  );
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

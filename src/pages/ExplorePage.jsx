@@ -5,7 +5,7 @@ import { fetchRecipesFromSpoonacular } from '../services/spoonacular.js';
 
 const hasSpoonacularKey = Boolean(import.meta.env.VITE_SPOONACULAR_KEY);
 
-export default function ExplorePage() {
+export default function ExplorePage({ addFavorite, favorites }) {
   const [searchTerm, setSearchTerm] = useState("");
   const [debouncedTerm, setDebouncedTerm] = useState("");
   const [recipes, setRecipes] = useState(fallbackRecipes);
@@ -117,7 +117,12 @@ export default function ExplorePage() {
           {filteredRecipes.length > 0 ? (
             <div className="explore-grid">
               {filteredRecipes.map((recipe) => (
-                <RecipeCard key={recipe.id} recipe={recipe} />
+                <RecipeCard 
+                  key={recipe.id} 
+                  recipe={recipe} 
+                  onFavorite={addFavorite}
+                  isFavorited={favorites.some(fav => fav.id === recipe.id)}
+                />
               ))}
             </div>
           ) : (
