@@ -1,3 +1,5 @@
+import { FaHeart, FaRegHeart, FaPlus } from 'react-icons/fa';
+
 export default function RecipeCard({ recipe, onFavorite, isFavorited }) {
   const backgroundStyle = recipe.image
     ? {
@@ -43,7 +45,7 @@ export default function RecipeCard({ recipe, onFavorite, isFavorited }) {
             onClick={() => onFavorite(recipe)}
             disabled={isFavorited}
           >
-            {isFavorited ? '❤️ Added' : '+ Add to My Meals'}
+            {isFavorited ? <><FaHeart /> Added</> : <><FaPlus /> Add to My Meals</>}
           </button>
         )}
       </div>

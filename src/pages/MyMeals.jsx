@@ -1,18 +1,31 @@
 import { useState, useEffect } from 'react';
+import { FaSearch, FaPlus, FaTimes, FaTrash } from 'react-icons/fa';
+import { ref, set, onValue } from 'firebase/database';
+import { database } from '../config/firebase';
+import { useAuth } from '../context/AuthContext';
 
 export default function MyMeals({ favorites, removeFavorite }) {
-  const [meals, setMeals] = useState(() => {
-    try {
-      const saved = localStorage.getItem('mealPlannerCustomMeals');
-      return saved ? JSON.parse(saved) : [];
-    } catch {
-      return [];
-    }
-  });
+  const { activeUser } = useAuth();
+  const [meals, setMeals] = useState([]);
 
   useEffect(() => {
-    localStorage.setItem('mealPlannerCustomMeals', JSON.stringify(meals));
-  }, [meals]);
+    if (!activeUser) {
+      setMeals([]);
+      return;
+    }
+
+    const mealsRef = ref(database, `users/${activeUser.email.replace(/\./g, '_')}/meals`);
+    
+    const unsubscribe = onValue(mealsRef, (snapshot) => {
+      const data = snapshot.val();
+      setMeals(data ? Object.values(data) : []);
+    }, (error) => {
+      console.error("Error reading meals:", error);
+      setMeals([]);
+    });
+
+    return () => unsubscribe();
+  }, [activeUser]);
   const [searchTerm, setSearchTerm] = useState('');
   const [filterType, setFilterType] = useState('All');
   const [sortBy, setSortBy] = useState('name');
@@ -26,8 +39,13 @@ export default function MyMeals({ favorites, removeFavorite }) {
     image: ''
   });
 
-  const handleAddMeal = (e) => {
+  const handleAddMeal = async (e) => {
     e.preventDefault();
+    
+    if (!activeUser) {
+      alert("Please sign in to save meals");
+      return;
+    }
     
     if (!newMeal.name.trim()) return;
 
@@ -40,13 +58,31 @@ export default function MyMeals({ favorites, removeFavorite }) {
       image: newMeal.image.trim() || null
     };
 
-    setMeals([...meals, meal]);
-    setNewMeal({ name: '', type: 'Breakfast', calories: '', tags: '', image: '' });
-    setShowForm(false);
+    const newMeals = [...meals, meal];
+    const mealsRef = ref(database, `users/${activeUser.email.replace(/\./g, '_')}/meals`);
+    
+    try {
+      await set(mealsRef, newMeals);
+      setNewMeal({ name: '', type: 'Breakfast', calories: '', tags: '', image: '' });
+      setShowForm(false);
+    } catch (error) {
+      console.error("Error saving meal:", error);
+      alert("Failed to save meal. Please try again.");
+    }
   };
 
-  const removeMeal = (id) => {
-    setMeals(meals.filter(meal => meal.id !== id));
+  const removeMeal = async (id) => {
+    if (!activeUser) return;
+
+    const newMeals = meals.filter(meal => meal.id !== id);
+    const mealsRef = ref(database, `users/${activeUser.email.replace(/\./g, '_')}/meals`);
+    
+    try {
+      await set(mealsRef, newMeals);
+    } catch (error) {
+      console.error("Error removing meal:", error);
+      alert("Failed to remove meal. Please try again.");
+    }
   };
 
   const allMeals = [...favorites, ...meals];
@@ -80,7 +116,7 @@ export default function MyMeals({ favorites, removeFavorite }) {
   return (
     <div className="explore-body">
       <div id="search">
-        <label htmlFor="meals-search">🔍 Search your meals</label>
+        <label htmlFor="meals-search"><FaSearch /> Search your meals</label>
         <input
           id="meals-search"
           type="search"
@@ -103,7 +139,7 @@ export default function MyMeals({ favorites, removeFavorite }) {
               className="chip" 
               onClick={() => setShowForm(!showForm)}
             >
-              {showForm ? 'Cancel' : '+ Add New Meal'}
+              {showForm ? <><FaTimes /> Cancel</> : <><FaPlus /> Add New Meal</>}
             </button>
           </div>
 

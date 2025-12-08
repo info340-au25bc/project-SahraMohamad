@@ -1,5 +1,8 @@
 import { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { ref, set, onValue } from 'firebase/database';
+import { database } from './config/firebase';
+import { useAuth } from './context/AuthContext';
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import HomePage from "./pages/homepage.jsx";
@@ -11,27 +14,59 @@ import FridgeItemDetail from "./pages/FridgeItemDetail.jsx";
 import "../css/app.css";
 
 export default function App() {
-  const [favorites, setFavorites] = useState(() => {
-    try {
-      const saved = localStorage.getItem('mealPlannerFavorites');
-      return saved ? JSON.parse(saved) : [];
-    } catch {
-      return [];
-    }
-  });
+  const { activeUser } = useAuth();
+  const [favorites, setFavorites] = useState([]);
 
   useEffect(() => {
-    localStorage.setItem('mealPlannerFavorites', JSON.stringify(favorites));
-  }, [favorites]);
+    if (!activeUser) {
+      setFavorites([]);
+      return;
+    }
 
-  const addFavorite = (recipe) => {
-    if (!favorites.find(fav => fav.id === recipe.id)) {
-      setFavorites([...favorites, recipe]);
+    const favoritesRef = ref(database, `users/${activeUser.email.replace(/\./g, '_')}/favorites`);
+    
+    const unsubscribe = onValue(favoritesRef, (snapshot) => {
+      const data = snapshot.val();
+      setFavorites(data ? Object.values(data) : []);
+    }, (error) => {
+      console.error("Error reading favorites:", error);
+      setFavorites([]);
+    });
+
+    return () => unsubscribe();
+  }, [activeUser]);
+
+  const addFavorite = async (recipe) => {
+    if (!activeUser) {
+      alert("Please sign in to save favorites");
+      return;
+    }
+    
+    if (favorites.find(fav => fav.id === recipe.id)) return;
+
+    const newFavorites = [...favorites, recipe];
+    const favoritesRef = ref(database, `users/${activeUser.email.replace(/\./g, '_')}/favorites`);
+    
+    try {
+      await set(favoritesRef, newFavorites);
+    } catch (error) {
+      console.error("Error saving favorite:", error);
+      alert("Failed to save favorite. Please try again.");
     }
   };
 
-  const removeFavorite = (id) => {
-    setFavorites(favorites.filter(recipe => recipe.id !== id));
+  const removeFavorite = async (id) => {
+    if (!activeUser) return;
+
+    const newFavorites = favorites.filter(recipe => recipe.id !== id);
+    const favoritesRef = ref(database, `users/${activeUser.email.replace(/\./g, '_')}/favorites`);
+    
+    try {
+      await set(favoritesRef, newFavorites);
+    } catch (error) {
+      console.error("Error removing favorite:", error);
+      alert("Failed to remove favorite. Please try again.");
+    }
   };
 
   return (

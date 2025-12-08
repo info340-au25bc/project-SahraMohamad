@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
+import { FaSearch } from 'react-icons/fa';
 import RecipeCard from '../components/RecipeCard';
 import fallbackRecipes from '../data/fallbackRecipes.js';
 import { fetchRecipesFromSpoonacular } from '../services/spoonacular.js';
@@ -89,7 +90,7 @@ export default function ExplorePage({ addFavorite, favorites }) {
   return (
     <div className="explore-body">
       <div id="search">
-        <label htmlFor="explore-search">🔍 What are you looking for today?</label>
+        <label htmlFor="explore-search"><FaSearch /> What are you looking for today?</label>
         <input
           id="explore-search"
           type="search"

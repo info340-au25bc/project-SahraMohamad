@@ -353,11 +353,7 @@ export default function FridgePage() {
 }
 
 function FridgeItemCard({ item, onRemove, onExpirationChange }) {
-  const imageElement = item.detailHref ? (
-    <Link to={item.detailHref}>
-      <img className="fridge-item" src={item.image} alt={item.name} />
-    </Link>
-  ) : (
+  const imageElement = (
     <img className="fridge-item" src={item.image} alt={item.name} />
   );
 
