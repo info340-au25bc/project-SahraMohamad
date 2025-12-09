@@ -35,9 +35,9 @@ export default function MyMeals({ favorites, removeFavorite }) {
     name: '',
     type: 'Breakfast',
     calories: '',
-    tags: '',
-    image: ''
+    tags: ''
   });
+  const [newMealPhoto, setNewMealPhoto] = useState(null);
 
   const handleAddMeal = async (e) => {
     e.preventDefault();
@@ -49,13 +49,30 @@ export default function MyMeals({ favorites, removeFavorite }) {
     
     if (!newMeal.name.trim()) return;
 
+    let imageData = null;
+
+    if (newMealPhoto) {
+      if (!newMealPhoto.type.startsWith('image/')) {
+        alert("Only image files can be uploaded.");
+        return;
+      }
+
+      const reader = new FileReader();
+      
+      imageData = await new Promise((resolve, reject) => {
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = () => reject(new Error("Failed to read photo"));
+        reader.readAsDataURL(newMealPhoto);
+      });
+    }
+
     const meal = {
       id: Date.now(),
       name: newMeal.name.trim(),
       type: newMeal.type,
       calories: newMeal.calories ? parseInt(newMeal.calories) : null,
       tags: newMeal.tags.split(',').map(tag => tag.trim()).filter(tag => tag),
-      image: newMeal.image.trim() || null
+      image: imageData
     };
 
     const newMeals = [...meals, meal];
@@ -63,7 +80,9 @@ export default function MyMeals({ favorites, removeFavorite }) {
     
     try {
       await set(mealsRef, newMeals);
-      setNewMeal({ name: '', type: 'Breakfast', calories: '', tags: '', image: '' });
+      setNewMeal({ name: '', type: 'Breakfast', calories: '', tags: '' });
+      setNewMealPhoto(null);
+      e.target.reset();
       setShowForm(false);
     } catch (error) {
       console.error("Error saving meal:", error);
@@ -204,15 +223,14 @@ export default function MyMeals({ favorites, removeFavorite }) {
               </div>
 
               <div className="form-field">
-                <label htmlFor="meal-image">
-                  Photo URL (optional)
+                <label htmlFor="meal-photo">
+                  Upload a photo (optional)
                 </label>
                 <input
-                  id="meal-image"
-                  type="url"
-                  placeholder="e.g., https://example.com/photo.jpg"
-                  value={newMeal.image}
-                  onChange={(e) => setNewMeal({ ...newMeal, image: e.target.value })}
+                  id="meal-photo"
+                  type="file"
+                  accept="image/*"
+                  onChange={(e) => setNewMealPhoto(e.target.files[0] || null)}
                 />
               </div>
 
@@ -259,22 +277,17 @@ export default function MyMeals({ favorites, removeFavorite }) {
             <div className="explore-grid">
               {sortedMeals.map((meal) => (
                 <div key={meal.id} className="card">
-                  <div
-                    className="card-image"
-                    role="img"
-                    aria-label={`${meal.name} placeholder`}
-                    style={meal.image ? {
-                      backgroundImage: `linear-gradient(0deg, rgba(0, 0, 0, 0.35), rgba(0,0,0,.35)), url(${meal.image})`,
-                      backgroundSize: 'cover',
-                      backgroundPosition: 'center'
-                    } : undefined}
-                  >
-                    <span className="card-placeholder">
-                      {favorites.some(fav => fav.id === meal.id) ? '❤️ Favorite' : 'My Meal'}
-                    </span>
+                  <div className="card-image" role="img" aria-label={`${meal.name} placeholder`}>
+                    {meal.image ? (
+                      <img src={meal.image} alt={`${meal.name} plated`} loading="lazy" />
+                    ) : (
+                      <span className="card-placeholder">
+                        {favorites.some(fav => fav.id === meal.id) ? '❤️ Favorite' : 'My Meal'}
+                      </span>
+                    )}
                   </div>
                   <div className="card-footer">
-                    <div>
+                    <div className="card-info">
                       <h3>{meal.name}</h3>
                       <p>
                         {meal.type}

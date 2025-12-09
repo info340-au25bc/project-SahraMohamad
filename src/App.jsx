@@ -79,7 +79,7 @@ export default function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/fridge" element={<FridgePage />} />
             <Route path="/fridge-items/:slug" element={<FridgeItemDetail />} />
-            <Route path="/explore" element={<ExplorePage addFavorite={addFavorite} favorites={favorites} />} />
+            <Route path="/explore" element={<ExplorePage addFavorite={addFavorite} removeFavorite={removeFavorite} favorites={favorites} />} />
             <Route path="/favorites" element={<MyMeals favorites={favorites} removeFavorite={removeFavorite} />} />
             <Route path="/login" element={<LoginPage />} />
           </Routes>

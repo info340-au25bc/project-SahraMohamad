@@ -24,13 +24,11 @@ const readCustomItems = () => readJson(CUSTOM_FRIDGE_KEY, []);
 const readItemExpirations = () => readJson(ITEM_EXPIRATIONS_KEY, {});
 const readPresetItems = () => {
   const stored = readJson(PRESET_FRIDGE_KEY, null);
-  const fallback = presetFridgeItems.slice(0, 2); // keep at least two example items
-
+  const fallback = []; 
   if (!Array.isArray(stored) || stored.length === 0) {
     return fallback;
   }
 
-  // Keep any local changes (like removed items) but normalize links and images.
   return stored
     .map((item) => {
       const canonical = presetFridgeItems.find(
@@ -252,7 +250,7 @@ export default function FridgePage() {
     [presetState, itemExpirations]
   );
 
-  const displayedItems = [...presetWithExpirations, ...customItems];
+  const displayedItems = [...customItems];
 
   const expiringSoon = displayedItems
     .map((item) => {
@@ -268,7 +266,7 @@ export default function FridgePage() {
 
   return (
     <main>
-      <div>
+      <div className="fridge-layout">
         <section className="notif-column">
           <h1>Alerts</h1>
           {expiringSoon.length ? (
@@ -354,7 +352,7 @@ export default function FridgePage() {
 
 function FridgeItemCard({ item, onRemove, onExpirationChange }) {
   const imageElement = (
-    <img className="fridge-item" src={item.image} alt={item.name} />
+    <img className="fridge-item-img" src={item.image} alt={item.name} />
   );
 
   const expiration = getExpirationCopy(item.name, item.expiresOn);

@@ -6,7 +6,7 @@ import { fetchRecipesFromSpoonacular } from '../services/spoonacular.js';
 
 const hasSpoonacularKey = Boolean(import.meta.env.VITE_SPOONACULAR_KEY);
 
-export default function ExplorePage({ addFavorite, favorites }) {
+export default function ExplorePage({ addFavorite, removeFavorite, favorites }) {
   const [searchTerm, setSearchTerm] = useState("");
   const [debouncedTerm, setDebouncedTerm] = useState("");
   const [recipes, setRecipes] = useState(fallbackRecipes);
@@ -122,6 +122,7 @@ export default function ExplorePage({ addFavorite, favorites }) {
                   key={recipe.id} 
                   recipe={recipe} 
                   onFavorite={addFavorite}
+                  onRemoveFavorite={removeFavorite}
                   isFavorited={favorites.some(fav => fav.id === recipe.id)}
                 />
               ))}

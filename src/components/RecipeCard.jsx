@@ -1,27 +1,29 @@
 import { FaHeart, FaRegHeart, FaPlus } from 'react-icons/fa';
 
-export default function RecipeCard({ recipe, onFavorite, isFavorited }) {
-  const backgroundStyle = recipe.image
-    ? {
-        backgroundImage: `linear-gradient(0deg, rgba(0, 0, 0, 0.35), rgba(0,0,0,.35)), url(${recipe.image})`,
-      }
-    : undefined;
+export default function RecipeCard({ recipe, onFavorite, onRemoveFavorite, isFavorited }) {
   const imageLabel = recipe.image
     ? `${recipe.name} plated`
     : `${recipe.name} placeholder`;
 
+  const handleClick = () => {
+    if (isFavorited && onRemoveFavorite) {
+      onRemoveFavorite(recipe.id);
+    } else if (onFavorite) {
+      onFavorite(recipe);
+    }
+  };
+
   return (
     <div className="card">
-      <div
-        className="card-image"
-        style={backgroundStyle}
-        role="img"
-        aria-label={imageLabel}
-      >
-        {!recipe.image && <span className="card-placeholder">Meal idea</span>}
+      <div className="card-image" role="img" aria-label={imageLabel}>
+        {recipe.image ? (
+          <img src={recipe.image} alt={imageLabel} loading="lazy" />
+        ) : (
+          <span className="card-placeholder">Meal idea</span>
+        )}
       </div>
       <div className="card-footer">
-        <div>
+        <div className="card-info">
           <h3>{recipe.name}</h3>
           <p>
             {recipe.type}
@@ -39,13 +41,12 @@ export default function RecipeCard({ recipe, onFavorite, isFavorited }) {
             <span className="tag">{recipe.type}</span>
           )}
         </div>
-        {onFavorite && (
+        {(onFavorite || onRemoveFavorite) && (
           <button 
             className="chip" 
-            onClick={() => onFavorite(recipe)}
-            disabled={isFavorited}
+            onClick={handleClick}
           >
-            {isFavorited ? <><FaHeart /> Added</> : <><FaPlus /> Add to My Meals</>}
+            {isFavorited ? <><FaHeart /> Remove</> : <><FaPlus /> Add to My Meals</>}
           </button>
         )}
       </div>
